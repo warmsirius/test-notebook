@@ -8,7 +8,11 @@ class TaskIndex(TaskSet):
     def getIndex(self):
         # 如果是https协议，verify=True
         # 如果是http协议，verify=False
-        self.client.get("https://www.baidu.com", verify=True)
+        response = self.client.get("https://www.baidu.com", verify=True, catch_response=True)
+        if response.status_code == 200:
+            response.success()
+        else:
+            response.failure("百度网页获取错误")
 
 
 class WebSite(HttpUser):
@@ -20,4 +24,4 @@ class WebSite(HttpUser):
 if __name__ == "__main__":
     import os
 
-    os.system("locust -f user.py --host=http://0.0.0.0:8089")
+    os.system("locust -f 5.locustDemo.py --host=http://0.0.0.0:8089")
