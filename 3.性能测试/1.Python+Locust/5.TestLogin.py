@@ -1,3 +1,7 @@
+from random import randint
+
+from locust import HttpUser, TaskSet, task
+
 """
 1.实现登录基本功能，输出响应，脚本正确
 2.多用户随机登录: doLogin方法构造随机数据
@@ -6,9 +10,6 @@
     - 在请求方法中设置catch_response参数为True
     - 调用success 和 failure方法标注成功或失败
 """
-from random import randint
-
-from locust import HttpUser, TaskSet, task
 
 
 # 任务类
